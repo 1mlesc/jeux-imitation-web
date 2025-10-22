@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5173:5173"  # Port pour le développement (Vite)
+      - "3000:3000"  # Port pour la production (serve)
+    volumes:
+      - .:/app       # Monte le répertoire courant pour le développement
+      - /app/node_modules  # Évite d'écraser node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev  # Lance le serveur de développement Vite
